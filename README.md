@@ -1,3 +1,3 @@
 # extracao_pdfs
 
-Esses códigos realizam extrações de dados de diferentes pdfs
+Esses código tem objetivo extrair dados de diferentes pdfs e salvar em um único arquivo de excel
