@@ -20,13 +20,13 @@ pd.options.mode.chained_assignment = None
 
 #Adicione as URLs de extração:
 
-url_carne = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\CARNE.pdf'
-url_estocagem = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\ESTOCAGEM.pdf'
-url_nao_comestivel = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\CARNE.pdf'
-url_leite = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\NÃO COMESTÍVEL.pdf'
-url_mel = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\MEL.pdf'
-url_ovos = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\OVOS.pdf'
-url_pescado = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\PESCADO.pdf'
+url_carne = 'https://github.com/samuel-granieri/extracao_pdfs/blob/main/CARNE.pdf'
+url_estocagem = 'https://github.com/samuel-granieri/extracao_pdfs/blob/main/ESTOCAGEM.pdf'
+url_nao_comestivel = 'https://github.com/samuel-granieri/extracao_pdfs/blob/main/N%C3%83O%20COMEST%C3%8DVEL.pdf'
+url_leite = 'https://github.com/samuel-granieri/extracao_pdfs/blob/main/LEITE.pdf'
+url_mel = 'https://github.com/samuel-granieri/extracao_pdfs/blob/main/MEL.pdf'
+url_ovos = 'https://github.com/samuel-granieri/extracao_pdfs/blob/main/OVOS.pdf'
+url_pescado = r'https://github.com/samuel-granieri/extracao_pdfs/blob/main/PESCADO.pdf'
 
 
 #Metodo para auxiliar na criação das colunas
