@@ -18,24 +18,16 @@ import PyPDF2
 pd.options.mode.chained_assignment = None
 
 
-var_1 = 'LucianaBrochmann'
-var_2 = 'SamuelMartins'
+#Adicione as URLs de extração:
 
-#url_carne = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\CARNE.pdf'
-#url_estocagem = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\ESTOCAGEM.pdf'
-#url_nao_comestivel = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\CARNE.pdf'
-#url_leite = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\NÃO COMESTÍVEL.pdf'
-#url_mel = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\MEL.pdf'
-#url_ovos = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\OVOS.pdf'
-#url_pescado = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\PESCADO.pdf'
+url_carne = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\CARNE.pdf'
+url_estocagem = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\ESTOCAGEM.pdf'
+url_nao_comestivel = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\CARNE.pdf'
+url_leite = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\NÃO COMESTÍVEL.pdf'
+url_mel = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\MEL.pdf'
+url_ovos = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\OVOS.pdf'
+url_pescado = r'C:\Users\SamuelMartins\ABIEC\Fontes BI - Documentos\Estabelecimentos\PESCADO.pdf'
 
-url_carne = r'C:\Users\LucianaBrochmann\OneDrive - ABIEC\Documentos - Fontes BI\Estabelecimentos\CARNE.pdf'
-url_estocagem = r'C:\Users\LucianaBrochmann\OneDrive - ABIEC\Documentos - Fontes BI\Estabelecimentos\ESTOCAGEM.pdf'
-url_nao_comestivel = r'C:\Users\LucianaBrochmann\OneDrive - ABIEC\Documentos - Fontes BI\Estabelecimentos\NÃO COMESTÍVEL.pdf'
-url_leite = r'C:\Users\LucianaBrochmann\OneDrive - ABIEC\Documentos - Fontes BI\Estabelecimentos\LEITE.pdf'
-url_mel = r'C:\Users\LucianaBrochmann\OneDrive - ABIEC\Documentos - Fontes BI\Estabelecimentos\MEL.pdf'
-url_ovos = r'C:\Users\LucianaBrochmann\OneDrive - ABIEC\Documentos - Fontes BI\Estabelecimentos\OVOS.pdf'
-url_pescado = r'C:\Users\LucianaBrochmann\OneDrive - ABIEC\Documentos - Fontes BI\Estabelecimentos\PESCADO.pdf'
 
 #Metodo para auxiliar na criação das colunas
    
@@ -142,14 +134,11 @@ def etl_dataframe(df):
     
     #remover duplicados
     df = df.drop_duplicates(keep='first', subset=['SIF', 'Razão Social', 'Logradouro', 'Município', 'UF', 'Área', 'Categoria', 'Classe'])
-        
-    #Agrupar Logradouro
-    #df = df.groupby(['SIF', 'Razão Social', 'Município', 'UF', 'Área', 'Categoria', 'Classe'])['Logradouro'].agg(', '.join).reset_index()
     
     #Remover numero SIF da razao social
     def ajustar_razao_social(x):
         for item in df['SIF']:
-            item = str(item) #Watabe em 28/02/2023: forcei 'nan' para string para evitar erro de float             
+            item = str(item)         
             if item in x:
                 x = x.replace(item,'')                
         return x
@@ -212,31 +201,15 @@ for item in list_pdfs:
                                     pages=str(page))
                                     
             
-            
-            
         except:
             tables = camelot.read_pdf(item, 
                                     flavor='stream',
-                                    #table_areas=['0,515,760,70'],
-                                    #columns=['28,42,58,370,615'],
                                     columns=['370, 615'],
                                     row_tol=10,
                                     strip_text=';\n',
                                     split_text=True,
                                     pages=str(page))
                                    
-        
-    
-    
-        #camelot.plot(tables[0], kind='text').show()
-        #tb = tables[0].df.copy()
-        #tb1 = tables[1].df.copy()
-        #list_dfs = [tb, tb1]
-        #df_result = pd.concat(list_dfs)
-        #tb2 = tables[2].df.copy()
-        #print(tb, tb1)
-        #tk.mainloop()
-        
     
         df = pd.DataFrame()
         for table in tables:
@@ -259,6 +232,5 @@ for item in list_pdfs:
 df_geral = pd.concat(list_dfs)
 #remover duplicados
 df_geral = df_geral.drop_duplicates(keep='first', subset=['SIF', 'Razão Social', 'Logradouro', 'Município', 'UF', 'Área', 'Categoria', 'Classe'])
-df_geral.to_csv(r'C:\Users\LucianaBrochmann\OneDrive - ABIEC\Documentos - Fontes BI\Estabelecimentos\Saída\estabelecimentos_sif.csv', sep='|', encoding='utf-8-sig', index=False)
-#df_geral.to_csv(r'C:\Users\SamuelMartins\OneDrive - ABIEC\Área de Trabalho\Nova pasta\teste.csv', sep='|', encoding='utf-8-sig')
+df_geral.to_csv(r'estabelecimentos_sif.csv', sep='|', encoding='utf-8-sig', index=False)
 print('\nFinalizado com sucesso!')
