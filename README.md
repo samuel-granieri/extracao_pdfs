@@ -1,3 +1,3 @@
 # extracao_pdfs
 
-Esses códigos realizam extracoes de dados de diferentes pdfs
+Esses códigos realizam extrações de dados de diferentes pdfs
