@@ -6,4 +6,4 @@ Passo para executar:
 
   - Execute: git clone https://github.com/samuel-granieri/extracao_pdfs.git
   
-  - Execute: python + read_pdf_estabelecimentos.py
+  - Execute: python read_pdf_estabelecimentos.py
